@@ -3,70 +3,53 @@ import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import ListaPeliculas from "./ListaPeliculas";
 
 const Formulario = () => {
-    const [validated, setValidated] = useState(false);
-   
-     const handleSubmit = (event) => {
-       const form = event.currentTarget;
-       if (form.checkValidity() === false) {
-         event.preventDefault();
-         event.stopPropagation();
-       }
-   
-       setValidated(true);
-     };
-   
-    return (
-          <div>
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
+
+  return (
+    <div>
       <section className="p-3 border rounded-3 fondoFormulario">
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Form.Group as={Col} md="6" controlId="nombreMascota">
-              <Form.Label>Nombre de mascota *</Form.Label>
-              <Form.Control required type="text" placeholder="Ingrese nombre" />
-              <Form.Control.Feedback>Dato correcto</Form.Control.Feedback>
-              <Form.Control.Feedback type="invalid">
-                Dato incorrecto
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group as={Col} md="6" controlId="nombreDuenio">
-              <Form.Label>Nombre de dueño *</Form.Label>
+              <Form.Label>Nombre de pelicula *</Form.Label>
               <Form.Control
                 required
                 type="text"
-                placeholder="Ingrese apellido"
+                placeholder="Ingrese nombre de pelicula"
               />
               <Form.Control.Feedback>Dato correcto</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
                 Dato incorrecto
               </Form.Control.Feedback>
             </Form.Group>
+            <Form.Group as={Col} md="6">
+              <Form.Label>Genero</Form.Label>
+              <Form.Select>
+                <option value="" disabled hidden selected>Seleccione género</option>
+                <option value="1">Comedia</option>
+                <option value="2">Drama</option>
+                <option value="3">Infantil</option>
+              </Form.Select>
+            </Form.Group>
           </Row>
 
           <Row className="mb-3">
-            <Form.Group as={Col} md="6" controlId="fecha">
-              <Form.Label>Fecha *</Form.Label>
-              <Form.Control type="date" placeholder="Ingrese fecha" required />
-              <Form.Control.Feedback>Dato correcto</Form.Control.Feedback>
-              <Form.Control.Feedback type="invalid">
-                Dato incorrecto
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group as={Col} md="6" controlId="hora">
-              <Form.Label>Hora *</Form.Label>
-              <Form.Control type="time" placeholder="Ingrese hora" required />
-              <Form.Control.Feedback>Dato correcto</Form.Control.Feedback>
-              <Form.Control.Feedback type="invalid">
-                Dato incorrecto
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Row>
-          <Row className="mb-3">
             <Form.Group as={Col} md="12" controlId="sintomas">
-              <Form.Label>Sintomas *</Form.Label>
+              <Form.Label>Descripción *</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
-                placeholder="Ingrese sintomas"
+                placeholder="Ingrese descripción"
                 required
               />
               <Form.Control.Feedback>Dato correcto</Form.Control.Feedback>
@@ -76,7 +59,7 @@ const Formulario = () => {
             </Form.Group>
           </Row>
           <div className="text-center">
-            <Button type="submit">Agregar nueva cita</Button>
+            <Button type="submit">Agregar nueva pelicula</Button>
           </div>
         </Form>
       </section>
@@ -84,7 +67,7 @@ const Formulario = () => {
         <ListaPeliculas />
       </section>
     </div>
-    );
+  );
 };
 
 export default Formulario;
