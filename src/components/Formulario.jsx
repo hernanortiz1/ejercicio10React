@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import ListaPeliculas from "./ListaPeliculas";
+import Swal from 'sweetalert2'
 
 const Formulario = () => {
   const [dato, setDato] = useState({
@@ -28,7 +29,7 @@ const Formulario = () => {
     } else {
       Swal.fire({
         title: "Datos guardados correctamente",
-        text: `${dato.nombrePelicula}, ${dato.genero}`,
+        text: `Pelicula: ${dato.nombrePelicula}, genero: ${dato.genero}`,
         icon: "success",
         draggable: true,
       });
@@ -79,9 +80,9 @@ const Formulario = () => {
                 <option value="" disabled hidden>
                   Seleccione género
                 </option>
-                <option value="1">Comedia</option>
-                <option value="2">Drama</option>
-                <option value="3">Infantil</option>
+                <option value="Comedia">Comedia</option>
+                <option value="Drama">Drama</option>
+                <option value="Infantil">Infantil</option>
               </Form.Select>
             </Form.Group>
           </Row>
