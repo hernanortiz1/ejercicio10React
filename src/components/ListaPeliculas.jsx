@@ -1,6 +1,6 @@
 import TarjetaPelicula from "./TarjetaPelicula";
 
-const ListaPeliculas = () => {
+const ListaPeliculas = ({ datosProps, borrarDatosProps }) => {
     return (
          <div>
       <div className="text-center bg-white rounded-3">

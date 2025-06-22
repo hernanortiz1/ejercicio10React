@@ -45,6 +45,17 @@ const Formulario = () => {
     setValidated(false);
   };
 
+   const borrarDatos = (peliculaEliminada) => {
+    const indice = datosCorrectos.findIndex((item) => item === peliculaEliminada);
+
+    if (indice !== -1) {
+      const datosNuevos = [...datosCorrectos];
+
+      datosNuevos.splice(indice, 1);
+      setDatosCorrectos(datosNuevos);
+    }
+  };
+
   return (
     <div>
       <section className="p-3 border rounded-3 fondoFormulario">
@@ -113,7 +124,7 @@ const Formulario = () => {
         </Form>
       </section>
       <section className="my-3">
-        <ListaPeliculas />
+        <ListaPeliculas datosProps={datosCorrectos} borrarDatosProps={borrarDatos}/>
       </section>
     </div>
   );
