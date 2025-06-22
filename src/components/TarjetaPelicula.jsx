@@ -1,4 +1,5 @@
-import { Card, CardGroup, Form, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 const TarjetaPelicula = () => {
   return (
