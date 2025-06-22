@@ -1,18 +1,47 @@
 import { useState } from "react";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import ListaPeliculas from "./ListaPeliculas";
 
 const Formulario = () => {
+  const [dato, setDato] = useState({
+    nombrePelicula: "",
+    genero: "",
+    descripcion: "",
+  });
+
+  const [datosCorrectos, setDatosCorrectos] = useState([]);
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+
     if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+      e.stopPropagation();
+
+      Swal.fire({
+        icon: "error",
+        title: "Datos incorrectos!",
+        text: "Volvé a ingresar los datos",
+      });
+    } else {
+      Swal.fire({
+        title: "Datos guardados correctamente",
+        text: `${dato.nombrePelicula}, ${dato.genero}`,
+        icon: "success",
+        draggable: true,
+      });
+
+      setDatosCorrectos([...datosCorrectos, dato]);
+      setDato({
+        nombrePelicula: "",
+        genero: "",
+        descripcion: "",
+      });
     }
 
-    setValidated(true);
+    setValidated(false);
   };
 
   return (
@@ -26,6 +55,11 @@ const Formulario = () => {
                 required
                 type="text"
                 placeholder="Ingrese nombre de pelicula"
+                value={dato.nombrePelicula}
+                name="nombrePelicula"
+                onChange={(e) =>
+                  setDato({ ...dato, [e.target.name]: e.target.value })
+                }
               />
               <Form.Control.Feedback>Dato correcto</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
@@ -34,8 +68,17 @@ const Formulario = () => {
             </Form.Group>
             <Form.Group as={Col} md="6">
               <Form.Label>Genero</Form.Label>
-              <Form.Select>
-                <option value="" disabled hidden selected>Seleccione género</option>
+              <Form.Select
+                required
+                value={dato.genero}
+                name="genero"
+                onChange={(e) =>
+                  setDato({ ...dato, [e.target.name]: e.target.value })
+                }
+              >
+                <option value="" disabled hidden>
+                  Seleccione género
+                </option>
                 <option value="1">Comedia</option>
                 <option value="2">Drama</option>
                 <option value="3">Infantil</option>
@@ -51,6 +94,11 @@ const Formulario = () => {
                 rows={3}
                 placeholder="Ingrese descripción"
                 required
+                value={dato.descripcion}
+                name="descripcion"
+                onChange={(e) =>
+                  setDato({ ...dato, [e.target.name]: e.target.value })
+                }
               />
               <Form.Control.Feedback>Dato correcto</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
