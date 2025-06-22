@@ -1,30 +1,63 @@
-import { Card, CardGroup, Form, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
+import Swal from "sweetalert2";
 
-const TarjetaPelicula = () => {
+const TarjetaPelicula = ({datosProps, borrarDatosProps}) => {
+   const confirmarBorrado = () => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: `La pelicula ${datosProps.nombrePelicula}se eliminará`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, borrar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        borrarDatosProps(datosProps);
+
+        Swal.fire({
+          title: "Eliminado",
+          text: `La pelicula ${datosProps.nombrePelicula} fue borrada correctamente`,
+          icon: "success",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+      }
+    });
+  };
+  
   return (
-    <section className="p-3">
-      <div className="row row-cols-2 row-cols-md-3 g-4">
+     <section className="p-3">
+      <div className="">
         <div className="col">
           <Card>
-            <Card.Title className="m-2 text-start">Nombre: </Card.Title>
-            <Card.Body className="fondoFormulario">
-              <div className="text-start">
-                <p>
-                  <strong>Descripcion:</strong> This is a wider card with
-                  supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.
-                </p>
-                <p>
-                  <strong>Genero:</strong>
-                </p>
+            <Card.Title className="m-2 text-start">
+              <h4>Pelicula: {datosProps.nombrePelicula}</h4>
+            </Card.Title>
+            <Card.Body className="fondoFormulario text-start">
+              <div>
+                <div className="d-md-flex  align-items-center mb-2 text-center text-md-start">
+                  <strong className="me-2">Género</strong>
+                  <div className="bg-secondary-subtle py-1 w-100 rounded text-center">
+                    {datosProps.genero}
+                  </div>
+                </div>
+                <div className="d-md-flex align-items-center mb-2 text-center text-md-start">
+                  <strong className="me-md-2">Descripción:</strong>
+                  <div className="bg-secondary-subtle py-1 w-100 rounded text-center">
+                   {datosProps.descripcion}
+                  </div>
+                </div>
               </div>
             </Card.Body>
             <Card.Footer>
-              <div className="text-end ">
+              <div className="text-md-end">
                 <Button
                   type="submit"
                   variant="danger"
                   className="px-3 shadow-sm"
+                   onClick={confirmarBorrado}
                 >
                   Borrar
                 </Button>
