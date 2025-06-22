@@ -5,7 +5,7 @@ const TarjetaPelicula = ({datosProps, borrarDatosProps}) => {
    const confirmarBorrado = () => {
     Swal.fire({
       title: "¿Estás seguro?",
-      text: `La cita de ${datosProps.nombreMascota} y ${datosProps.nombreDuenio} se eliminará`,
+      text: `La pelicula ${datosProps.nombrePelicula}se eliminará`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -18,7 +18,7 @@ const TarjetaPelicula = ({datosProps, borrarDatosProps}) => {
 
         Swal.fire({
           title: "Eliminado",
-          text: `La cita de ${datosProps.nombreMascota} y ${datosProps.nombreDuenio} fue borrada correctamente`,
+          text: `La pelicula ${datosProps.nombrePelicula} fue borrada correctamente`,
           icon: "success",
           timer: 2000,
           showConfirmButton: false,
@@ -44,7 +44,7 @@ const TarjetaPelicula = ({datosProps, borrarDatosProps}) => {
                   </div>
                 </div>
                 <div className="d-md-flex align-items-center mb-2 text-center text-md-start">
-                  <strong className="me-2">Descripción:</strong>
+                  <strong className="me-md-2">Descripción:</strong>
                   <div className="bg-secondary-subtle py-1 w-100 rounded text-center">
                    {datosProps.descripcion}
                   </div>
@@ -52,7 +52,7 @@ const TarjetaPelicula = ({datosProps, borrarDatosProps}) => {
               </div>
             </Card.Body>
             <Card.Footer>
-              <div className="text-end ">
+              <div className="text-md-end">
                 <Button
                   type="submit"
                   variant="danger"
