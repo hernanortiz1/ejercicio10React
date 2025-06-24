@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState,  useEffect } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import ListaPeliculas from "./ListaPeliculas";
 import Swal from 'sweetalert2'
+import { useForm } from "react-hook-form";
 
 const Formulario = () => {
   const [dato, setDato] = useState({
