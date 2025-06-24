@@ -14,7 +14,13 @@ const Formulario = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      nombrePelicula: "",
+      genero: "",
+      descripcion: "",
+    },
+  });
 
   useEffect(() => {
     localStorage.setItem("listaPeliculas", JSON.stringify(datosCorrectos));
@@ -51,7 +57,7 @@ const Formulario = () => {
       <section className="p-3 border rounded-3 fondoFormulario">
         <Form onSubmit={handleSubmit(agregarDatos)}>
           <Row className="mb-3">
-            <Form.Group as={Col} md="6" >
+            <Form.Group as={Col} md="6">
               <Form.Label>Nombre de pelicula *</Form.Label>
               <Form.Control
                 required
@@ -95,7 +101,7 @@ const Formulario = () => {
           </Row>
 
           <Row className="mb-3">
-            <Form.Group as={Col} md="12" controlId="sintomas">
+            <Form.Group as={Col} md="12">
               <Form.Label>Descripción *</Form.Label>
               <Form.Control
                 as="textarea"
